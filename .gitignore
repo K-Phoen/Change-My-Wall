@@ -1,3 +1,6 @@
+# windows crap
+*.db
+
 # Built application files
 *.apk
 *.ap_
