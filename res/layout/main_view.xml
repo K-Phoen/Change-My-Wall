@@ -6,12 +6,12 @@
     android:orientation="vertical" >
 
     <com.polites.android.GestureImageView
-        android:id="@+id/image"
+        android:id="@+id/wallpaperImage"
         android:layout_width="fill_parent"
     	android:layout_height="fill_parent" 
     	android:scaleType="center"
         android:src="@drawable/wallpaper"
-        gesture-image:recycle="true" />
+        gesture-image:strict="true" />
 
     <TextView
         android:id="@+id/title"

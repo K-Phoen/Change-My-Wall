@@ -1,5 +1,6 @@
 package activity;
 
+import wallpaper.entity.Wallpaper;
 import wallpaper.repository.WallpaperRepository;
 import android.app.Activity;
 import android.content.Intent;
@@ -7,17 +8,19 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.cmw.R;
+import com.polites.android.GestureImageView;
 
 public class MainActivity extends Activity {
 	WallpaperRepository wallpaperRepository;
 
 	@Override
     public void onCreate(Bundle savedInstanceState) {
-       super.onCreate(savedInstanceState);
+		super.onCreate(savedInstanceState);
        
-       wallpaperRepository = WallpaperRepository.create();
+		wallpaperRepository = WallpaperRepository.create();
+		wallpaperRepository.selectProvider("dummy");
 
-       setContentView(R.layout.main_view);
+		setContentView(R.layout.main_view);
     }
 	
 	public void editSettings(View view) {
@@ -26,7 +29,9 @@ public class MainActivity extends Activity {
 	}
 	
 	public void changeWallpaper(View view) {
-		wallpaperRepository.selectProvider("dummy");
-		wallpaperRepository.changeWallpaper(this);
+		GestureImageView wallpaperView = (GestureImageView) findViewById(R.id.wallpaperImage);
+		Wallpaper wallpaper = wallpaperRepository.changeWallpaper(this);
+
+		wallpaperView.setImageDrawable(wallpaper.toDrawable(this));
 	}
 }

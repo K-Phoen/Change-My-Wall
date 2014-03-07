@@ -382,6 +382,12 @@ public class GestureImageView extends ImageView  {
 			if(colorFilter != null) {
 				this.drawable.setColorFilter(colorFilter);
 			}
+
+            // taken here: https://github.com/jasonpolites/gesture-imageview/issues/21#issuecomment-5801644
+			/* here begins the fix */
+            layout = false;
+            startingScale = -1.0f;
+            /* and here it ends */
 		}
 		
 		if(!layout) {
