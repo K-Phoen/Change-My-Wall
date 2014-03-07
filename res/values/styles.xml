@@ -24,4 +24,11 @@
         <item name="android:windowTranslucentNavigation">true</item>
     </style>
 
+
+    <!-- Main Activity theme. -->
+    <style name="MainActivityTheme" parent="ActivityTheme">
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">22sp</item>
+    </style>
+    
 </resources>
