@@ -31,4 +31,8 @@
         <item name="android:textSize">22sp</item>
     </style>
     
+    <!-- Provider Activity theme. -->
+    <style name="ProviderActivityTheme" parent="ActivityTheme">
+    </style>
+    
 </resources>

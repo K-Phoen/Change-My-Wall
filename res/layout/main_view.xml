@@ -17,13 +17,13 @@
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/author"
-        android:layout_alignLeft="@+id/author"
+        android:layout_above="@+id/text"
+        android:layout_alignLeft="@+id/text"
         android:layout_marginBottom="5dp"
         android:text="Soirée au BBox" />
 
     <TextView
-        android:id="@+id/author"
+        android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -32,5 +32,25 @@
         android:layout_marginLeft="18dp"
         android:textSize="18sp"
         android:text="Superman" />
+
+    <ImageButton
+        android:id="@+id/settingsBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/text"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="24dp"
+        android:background="@drawable/ic_action_overflow"
+        android:src="@drawable/ic_action_overflow" />
+
+    <ImageButton
+        android:id="@+id/nextWallBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/settingsBtn"
+        android:layout_marginRight="17dp"
+        android:layout_toLeftOf="@+id/settingsBtn"
+        android:background="@null"
+        android:src="@android:drawable/ic_media_next" />
 
 </RelativeLayout>
