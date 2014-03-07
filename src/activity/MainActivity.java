@@ -1,5 +1,6 @@
 package activity;
 
+import wallpaper.repository.WallpaperRepository;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,10 +9,13 @@ import android.view.View;
 import com.cmw.R;
 
 public class MainActivity extends Activity {
+	WallpaperRepository wallpaperRepository;
 
 	@Override
     public void onCreate(Bundle savedInstanceState) {
        super.onCreate(savedInstanceState);
+       
+       wallpaperRepository = WallpaperRepository.create();
 
        setContentView(R.layout.main_view);
     }
@@ -22,6 +26,7 @@ public class MainActivity extends Activity {
 	}
 	
 	public void changeWallpaper(View view) {
-		System.out.println("coucou");
+		wallpaperRepository.selectProvider("dummy");
+		wallpaperRepository.changeWallpaper(this);
 	}
 }
