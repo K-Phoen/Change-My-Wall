@@ -7,4 +7,5 @@ public interface Provider {
 	Wallpaper getWallpaper(Activity activity);
 
 	String getName();
+	int getIcon();
 }

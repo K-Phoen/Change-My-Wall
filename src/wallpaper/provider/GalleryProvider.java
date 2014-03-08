@@ -3,6 +3,8 @@ package wallpaper.provider;
 import java.util.ArrayList;
 import java.util.Random;
 
+import com.cmw.R;
+
 import wallpaper.entity.DrawableWallpaper;
 import wallpaper.entity.Wallpaper;
 import android.app.Activity;
@@ -41,5 +43,10 @@ public class GalleryProvider implements Provider {
 	@Override
 	public String getName() {
 		return "gallery";
+	}
+
+	@Override
+	public int getIcon() {
+		return R.drawable.sd;
 	}
 }

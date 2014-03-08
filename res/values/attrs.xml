@@ -2,5 +2,6 @@
 <resources>
     <declare-styleable name="ProviderButton">
         <attr name="providerName" format="string" />
+        <attr name="providerImage" format="integer" />
     </declare-styleable>
 </resources> 

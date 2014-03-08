@@ -23,4 +23,8 @@ public class DummyProvider implements Provider {
 	public String getName() {
 		return name;
 	}
+	
+	public int getIcon() {
+		return R.drawable.sd;
+	}
 }
