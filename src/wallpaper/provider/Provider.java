@@ -8,4 +8,7 @@ public interface Provider {
 
 	String getName();
 	int getIcon();
+
+	//boolean isConfigurable();
+	//Class<?> getConfigurationActivity();
 }

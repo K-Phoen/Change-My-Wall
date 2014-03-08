@@ -1,5 +1,6 @@
 package activity;
 
+
 import settings.SettingsRepository;
 import wallpaper.entity.Wallpaper;
 import wallpaper.repository.WallpaperRepository;
@@ -28,9 +29,33 @@ public class MainActivity extends Activity {
     }
 
 	public void editSettings(View view) {
-		Intent intent = new Intent (this, ProvidersActivity.class);
+		Intent intent = new Intent(this, ProvidersActivity.class);
 		startActivity(intent);
+		//Intent i = new Intent(Action.ACTION_MULTIPLE_PICK);
+		//startActivityForResult(i, 200);
 	}
+
+	/*protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 100 && resultCode == Activity.RESULT_OK) {
+            String single_path = data.getStringExtra("single_path");
+        	System.out.println("file://" + single_path);
+        } else if (requestCode == 200 && resultCode == Activity.RESULT_OK) {
+            String[] all_path = data.getStringArrayExtra("all_path");
+
+            ArrayList<CustomGallery> dataT = new ArrayList<CustomGallery>();
+
+            for (String string : all_path) {
+                CustomGallery item = new CustomGallery();
+                item.sdcardPath = string;
+
+                dataT.add(item);
+                System.out.println(string);
+            }
+
+        }
+    }*/
 
 	public void changeWallpaper(View view) {
 		GestureImageView wallpaperView = (GestureImageView) findViewById(R.id.wallpaperImage);
