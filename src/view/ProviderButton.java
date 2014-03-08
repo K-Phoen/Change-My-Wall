@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.cmw.R;
 
 public class ProviderButton extends LinearLayout {
+	private String providerName;
 	public ProviderButton(Context context, AttributeSet attrs) {
 		super(context, attrs);
 
@@ -20,13 +21,30 @@ public class ProviderButton extends LinearLayout {
 
 		// configure our layout
 		setOrientation(VERTICAL);
-
+		
 		// populate this layout using the xml-described layout
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.provider_button_layout, this);
 
         // fix dynamic attributes
-        TextView provider = (TextView) getChildAt(1);
-        provider.setText(providerName);
+        setProviderName (providerName);
+        
+        
+	}
+	public ProviderButton(Context context) {
+		super(context);
+	}
+	
+	public void setProviderName (String providerName) {
+		 TextView provider = (TextView) getChildAt(1);
+	        if (provider != null) {
+	        	provider.setGravity(TEXT_ALIGNMENT_GRAVITY);
+	        	this.providerName = providerName;
+	        	provider.setText(providerName);
+	        }
+	}
+	
+	public String getProviderName () {
+		return providerName;
 	}
 }

@@ -8,55 +8,19 @@
     android:layout_height="fill_parent"
     android:layout_alignParentLeft="true"
     android:layout_alignParentTop="true"
-    android:scrollbars="none" >
+    android:scrollbars="none" 
+    android:gravity="center">
 
-    <LinearLayout android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content">
-		<view.ProviderButton
+    <LinearLayout 	android:orientation="horizontal" 
+        			android:layout_width="wrap_content" 
+        			android:layout_height="wrap_content"
+        			android:gravity="center|center_horizontal"
+        			android:id="@+id/providerContainer"
+        			>
+		<!--  <view.ProviderButton
 			android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	      	custom:providerName="Dummy" />
-		<view.ProviderButton
-			android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	      	custom:providerName="joe" />
-		<view.ProviderButton
-			android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	      	custom:providerName="la" />
-		<view.ProviderButton
-			android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	      	custom:providerName="frite" />
-		<view.ProviderButton
-			android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	      	custom:providerName="tata" />
-		<view.ProviderButton
-			android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	      	custom:providerName="moule" /><view.ProviderButton
-			android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	      	custom:providerName="Dummy" />
-		<view.ProviderButton
-			android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	      	custom:providerName="joe" />
-		<view.ProviderButton
-			android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	      	custom:providerName="la" />
-		<view.ProviderButton
-			android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	      	custom:providerName="frite" />
-		<view.ProviderButton
-			android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	      	custom:providerName="tata" />
-		<view.ProviderButton
-			android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	      	custom:providerName="moule" />
+	        android:layout_margin="10dp"
+	      	custom:providerName="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" />-->
 	</LinearLayout>
 </HorizontalScrollView>

@@ -9,7 +9,6 @@ import wallpaper.provider.GalleryProvider;
 import wallpaper.provider.Provider;
 import android.app.Activity;
 import android.app.WallpaperManager;
-import android.content.Context;
 
 public class WallpaperRepository {
 	Map<String, Provider> providers = new HashMap<String, Provider>();
@@ -18,9 +17,13 @@ public class WallpaperRepository {
 	public static WallpaperRepository create() {
 		WallpaperRepository repository = new WallpaperRepository();
 
-		repository.addProvider(new DummyProvider());
 		repository.addProvider(new GalleryProvider());
 
+		repository.addProvider(new DummyProvider("dummy"));
+		repository.addProvider(new DummyProvider("dummy2"));
+		repository.addProvider(new DummyProvider("dummy3"));
+		repository.addProvider(new DummyProvider("dummy4"));
+	
 		return repository;
 	}
 
@@ -54,5 +57,9 @@ public class WallpaperRepository {
 		wallpaper.promoteAsWallpaper(manager);
 
 		return wallpaper;
+	}
+	
+	public Map<String, Provider> getProviders () {
+		return providers;
 	}
 }
