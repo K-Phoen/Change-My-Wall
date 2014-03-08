@@ -54,6 +54,7 @@ public class ZoomAnimation implements Animation {
 			
 			startX = view.getImageX();
 			startY = view.getImageY();
+			System.out.println(startX + " StartX " + startY + " StartY ");
 			startScale = view.getScale();
 			scaleDiff = (zoom * startScale) - startScale;
 			
@@ -83,6 +84,7 @@ public class ZoomAnimation implements Animation {
 				// Zoom out to center
 				xDiff = view.getCenterX() - startX;
 				yDiff = view.getCenterY() - startY;
+				System.out.println(xDiff + " xDiff " + yDiff + " yDiff ");
 			}
 		}
 		

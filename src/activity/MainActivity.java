@@ -27,7 +27,7 @@ public class MainActivity extends Activity {
 		Intent intent = new Intent (this, ProvidersActivity.class);
 		startActivity(intent);
 	}
-	
+
 	public void changeWallpaper(View view) {
 		GestureImageView wallpaperView = (GestureImageView) findViewById(R.id.wallpaperImage);
 		Wallpaper wallpaper = wallpaperRepository.changeWallpaper(this);
