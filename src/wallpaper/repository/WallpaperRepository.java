@@ -43,7 +43,11 @@ public class WallpaperRepository {
 
 	public Wallpaper changeWallpaper(Activity activity) {
 		if (selectedProvider == null) {
-			throw new RuntimeException("No provider selected");
+			if (providers.isEmpty()) {
+				throw new RuntimeException("No provider registered");
+			}
+
+			selectedProvider = providers.values().iterator().next();
 		}
 
 		// get a new wallpaper
