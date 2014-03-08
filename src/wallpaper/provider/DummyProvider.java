@@ -2,7 +2,7 @@ package wallpaper.provider;
 
 import wallpaper.entity.ResourceWallpaper;
 import wallpaper.entity.Wallpaper;
-import android.content.Context;
+import android.app.Activity;
 
 import com.cmw.R;
 
@@ -11,7 +11,7 @@ import com.cmw.R;
 public class DummyProvider implements Provider {
 
 	@Override
-	public Wallpaper getWallpaper(Context context) {
+	public Wallpaper getWallpaper(Activity activity) {
 		return new ResourceWallpaper(R.drawable.dummy_wallpaper);
 	}
 

@@ -5,7 +5,9 @@ import java.util.Map;
 
 import wallpaper.entity.Wallpaper;
 import wallpaper.provider.DummyProvider;
+import wallpaper.provider.GalleryProvider;
 import wallpaper.provider.Provider;
+import android.app.Activity;
 import android.app.WallpaperManager;
 import android.content.Context;
 
@@ -17,6 +19,7 @@ public class WallpaperRepository {
 		WallpaperRepository repository = new WallpaperRepository();
 
 		repository.addProvider(new DummyProvider());
+		repository.addProvider(new GalleryProvider());
 
 		return repository;
 	}
@@ -35,19 +38,19 @@ public class WallpaperRepository {
 		selectedProvider = provider;
 	}
 
-	public Wallpaper changeWallpaper(Context context) {
+	public Wallpaper changeWallpaper(Activity activity) {
 		if (selectedProvider == null) {
 			throw new RuntimeException("No provider selected");
 		}
 
 		// get a new wallpaper
-		Wallpaper wallpaper = selectedProvider.getWallpaper(context);
+		Wallpaper wallpaper = selectedProvider.getWallpaper(activity);
 		if(wallpaper == null) {
 			throw new RuntimeException("No wallpaper returned by the provider " + selectedProvider.getName());
 		}
 
 		// and define it as current wallpaper
-		WallpaperManager manager = WallpaperManager.getInstance(context);
+		WallpaperManager manager = WallpaperManager.getInstance(activity);
 		wallpaper.promoteAsWallpaper(manager);
 
 		return wallpaper;

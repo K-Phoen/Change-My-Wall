@@ -1,10 +1,10 @@
 package wallpaper.provider;
 
 import wallpaper.entity.Wallpaper;
-import android.content.Context;
+import android.app.Activity;
 
 public interface Provider {
-	Wallpaper getWallpaper(Context context);
+	Wallpaper getWallpaper(Activity activity);
 
 	String getName();
 }

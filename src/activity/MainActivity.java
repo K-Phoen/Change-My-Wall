@@ -18,7 +18,7 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
        
 		wallpaperRepository = WallpaperRepository.create();
-		wallpaperRepository.selectProvider("dummy");
+		wallpaperRepository.selectProvider("gallery");
 
 		setContentView(R.layout.main_view);
     }
