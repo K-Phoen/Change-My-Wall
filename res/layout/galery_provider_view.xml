@@ -23,4 +23,11 @@
        android:layout_below="@+id/my_checkedtextview"
        android:text="Sélectionner les différentes photos"
        android:visibility="invisible" />
+	<TextView 
+	   android:id="@+id/nbrImages"
+	   android:layout_width="fill_parent"
+       android:layout_height="90dip"
+       android:gravity="center_vertical|center_horizontal"
+       android:layout_below="@+id/buttonMultipleChoice"
+       android:visibility="invisible"/>
 </RelativeLayout>
