@@ -24,12 +24,6 @@ public class WallpaperRepository {
 		
 		repository.addProvider(new GalleryProvider(repo));
 		repository.addProvider(new AndroidWallpapersProvider());
-
-		repository.addProvider(new DummyProvider("dummy"));
-		repository.addProvider(new DummyProvider("dummy2"));
-		repository.addProvider(new DummyProvider("dummy3"));
-		repository.addProvider(new DummyProvider("dummy4"));
-	
 		return repository;
 	}
 
