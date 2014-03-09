@@ -3,6 +3,7 @@ package activity;
 
 import settings.SettingsRepository;
 import wallpaper.entity.Wallpaper;
+import wallpaper.repository.ResultCallback;
 import wallpaper.repository.WallpaperRepository;
 import android.app.Activity;
 import android.content.Intent;
@@ -31,40 +32,22 @@ public class MainActivity extends Activity {
 	public void editSettings(View view) {
 		Intent intent = new Intent(this, ProvidersActivity.class);
 		startActivity(intent);
-		//Intent i = new Intent(Action.ACTION_MULTIPLE_PICK);
-		//startActivityForResult(i, 200);
 	}
 
-	/*protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == 100 && resultCode == Activity.RESULT_OK) {
-            String single_path = data.getStringExtra("single_path");
-        	System.out.println("file://" + single_path);
-        } else if (requestCode == 200 && resultCode == Activity.RESULT_OK) {
-            String[] all_path = data.getStringArrayExtra("all_path");
-
-            ArrayList<CustomGallery> dataT = new ArrayList<CustomGallery>();
-
-            for (String string : all_path) {
-                CustomGallery item = new CustomGallery();
-                item.sdcardPath = string;
-
-                dataT.add(item);
-                System.out.println(string);
-            }
-
-        }
-    }*/
-
+	
 	public void changeWallpaper(View view) {
-		GestureImageView wallpaperView = (GestureImageView) findViewById(R.id.wallpaperImage);
+		final GestureImageView wallpaperView = (GestureImageView) findViewById(R.id.wallpaperImage);
 
 		if (settings.getCurrentProviderName() != null) {
 			wallpaperRepository.selectProvider(settings.getCurrentProviderName());
 		}
 
-		Wallpaper wallpaper = wallpaperRepository.changeWallpaper(this);
-		wallpaperView.setImageDrawable(wallpaper.toDrawable(this));
+		final Activity self = this;
+		wallpaperRepository.changeWallpaper(this, new ResultCallback() {
+			@Override
+			public void handleResult(Wallpaper wallpaper) {
+				wallpaperView.setImageDrawable(wallpaper.toDrawable(self));				
+			}
+		});
 	}
 }
