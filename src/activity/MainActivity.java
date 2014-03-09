@@ -32,7 +32,7 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.main_view);
 
 		final GestureImageView wallpaperView = (GestureImageView) findViewById(R.id.wallpaperImage);
-		wallpaperView.setImageDrawable(wallpaperManager.peekDrawable());
+		wallpaperView.setImageDrawable(wallpaperManager.getDrawable());
 
 		IntentFilter filter = new IntentFilter();
 		filter.addAction(Intent.ACTION_WALLPAPER_CHANGED);

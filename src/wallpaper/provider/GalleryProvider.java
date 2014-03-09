@@ -7,7 +7,7 @@ import java.util.Random;
 import settings.provider.GallerySettingsRepository;
 import wallpaper.entity.DrawableWallpaper;
 import wallpaper.repository.ResultCallback;
-import activity.prodiver.GalleryProviderActivity;
+import activity.provider.GalleryProviderActivity;
 import android.app.Activity;
 import android.database.Cursor;
 import android.graphics.drawable.BitmapDrawable;
@@ -20,6 +20,7 @@ import com.cmw.R;
 
 public class GalleryProvider implements Provider {
 	GallerySettingsRepository repo;
+
 	public GalleryProvider (GallerySettingsRepository repo) {
 		this.repo = repo;
 	}
@@ -72,13 +73,11 @@ public class GalleryProvider implements Provider {
 
 	@Override
 	public boolean isConfigurable() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
 	@Override
 	public Class<?> getConfigurationActivity() {
-		// TODO Auto-generated method stub
 		return GalleryProviderActivity.class;
 	}
 }
