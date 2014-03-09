@@ -6,6 +6,7 @@ import wallpaper.entity.Wallpaper;
 import wallpaper.repository.ResultCallback;
 import wallpaper.repository.WallpaperRepository;
 import android.app.Activity;
+import android.app.WallpaperManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -27,13 +28,16 @@ public class MainActivity extends Activity {
 		wallpaperRepository = WallpaperRepository.create();
 
 		setContentView(R.layout.main_view);
+
+		WallpaperManager manager = WallpaperManager.getInstance(this);
+		GestureImageView wallpaperView = (GestureImageView) findViewById(R.id.wallpaperImage);
+		wallpaperView.setImageDrawable(manager.peekDrawable());
     }
 
 	public void editSettings(View view) {
 		Intent intent = new Intent(this, ProvidersActivity.class);
 		startActivity(intent);
 	}
-
 	
 	public void changeWallpaper(View view) {
 		final GestureImageView wallpaperView = (GestureImageView) findViewById(R.id.wallpaperImage);
