@@ -7,7 +7,7 @@ import java.util.Random;
 import settings.provider.GallerySettingsRepository;
 import wallpaper.entity.DrawableWallpaper;
 import wallpaper.repository.ResultCallback;
-import activity.provider.GalleryProviderActivity;
+import activity.prodiver.GalleryProviderActivity;
 import android.app.Activity;
 import android.database.Cursor;
 import android.graphics.drawable.BitmapDrawable;
