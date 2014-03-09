@@ -29,7 +29,7 @@ public class MainActivity extends Activity {
 
 		settings = new SettingsRepository(new DatabaseHandler(this));
 		wallpaperManager = WallpaperManager.getInstance(this);
-		wallpaperRepository = WallpaperRepository.create();
+		wallpaperRepository = WallpaperRepository.create(this);
 
 		setContentView(R.layout.main_view);
 
@@ -55,10 +55,11 @@ public class MainActivity extends Activity {
 	}
 
 	public void changeWallpaper(View view) {
-		if (settings.getCurrentProviderName() != null) {
+		/*if (settings.getCurrentProviderName() != null) {
 			wallpaperRepository.selectProvider(settings
 					.getCurrentProviderName());
-		}
+		}*/
+		wallpaperRepository.selectProvider("gallery");
 
 		wallpaperRepository.changeWallpaper(this, new ResultCallback() {
 			@Override

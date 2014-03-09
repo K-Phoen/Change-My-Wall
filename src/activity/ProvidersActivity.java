@@ -31,7 +31,7 @@ public class ProvidersActivity extends Activity {
 		String currentProviderName = settings.getCurrentProviderName();
 
 		final LinearLayout providerContainer = (LinearLayout) findViewById(R.id.providerContainer);
-		final WallpaperRepository repository = WallpaperRepository.create();
+		final WallpaperRepository repository = WallpaperRepository.create(this);
 
 		for (Provider provider : repository.getProviders().values()) {
 			LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

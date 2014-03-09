@@ -1,8 +1,10 @@
 package wallpaper.provider;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
+import settings.provider.GallerySettingsRepository;
 import wallpaper.entity.DrawableWallpaper;
 import wallpaper.repository.ResultCallback;
 import activity.prodiver.GalleryProviderActivity;
@@ -17,9 +19,27 @@ import com.cmw.R;
 
 
 public class GalleryProvider implements Provider {
-
+	GallerySettingsRepository repo;
+	public GalleryProvider (GallerySettingsRepository repo) {
+		this.repo = repo;
+	}
+	
 	@Override
 	public void getWallpaper(Activity activity, ResultCallback callback) {
+		if (repo.useFullGallery())
+			getWallpaperFromFullGallery (activity, callback);
+		else
+			getWallpaperFromSelection (activity, callback, repo.selectionImages());
+	}
+
+	protected void getWallpaperFromSelection (Activity activity, ResultCallback callback, List <String> selection) {
+	    Random random = new Random();
+	    String path = selection.get(random.nextInt(selection.size()));
+
+	    callback.handleResult(new DrawableWallpaper(BitmapDrawable.createFromPath(path)));
+	}
+	
+	protected void getWallpaperFromFullGallery (Activity activity, ResultCallback callback) {
 		String[] projection = new String[] {
 				MediaStore.Images.Media.DATA
 	    };
@@ -38,9 +58,8 @@ public class GalleryProvider implements Provider {
 	    Random random = new Random();
 	    int count = imagesPath.size();
 	    
-	    callback.handleResult(new DrawableWallpaper(BitmapDrawable.createFromPath(imagesPath.get(random.nextInt(count-1)))));
+	    callback.handleResult(new DrawableWallpaper(BitmapDrawable.createFromPath(imagesPath.get(random.nextInt(count)))));
 	}
-
 	@Override
 	public String getName() {
 		return "gallery";

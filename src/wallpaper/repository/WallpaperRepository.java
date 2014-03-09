@@ -3,6 +3,7 @@ package wallpaper.repository;
 import java.util.HashMap;
 import java.util.Map;
 
+import settings.provider.GallerySettingsRepository;
 import wallpaper.entity.Wallpaper;
 import wallpaper.provider.AndroidWallpapersProvider;
 import wallpaper.provider.DummyProvider;
@@ -10,15 +11,18 @@ import wallpaper.provider.GalleryProvider;
 import wallpaper.provider.Provider;
 import android.app.Activity;
 import android.app.WallpaperManager;
+import android.content.Context;
+import database.DatabaseHandler;
 
 public class WallpaperRepository {
 	Map<String, Provider> providers = new HashMap<String, Provider>();
 	Provider selectedProvider;
 	
-	public static WallpaperRepository create() {
+	public static WallpaperRepository create(Context context) {
 		WallpaperRepository repository = new WallpaperRepository();
-
-		repository.addProvider(new GalleryProvider());
+		GallerySettingsRepository repo = new GallerySettingsRepository(new DatabaseHandler(context));
+		
+		repository.addProvider(new GalleryProvider(repo));
 		repository.addProvider(new AndroidWallpapersProvider());
 
 		repository.addProvider(new DummyProvider("dummy"));
