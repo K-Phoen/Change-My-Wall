@@ -83,7 +83,7 @@ public class AndroidWallpapersProvider implements Provider {
 		    Random random = new Random();
 
 			try {
-				URL wallpaperURL = new URL(urls.get(random.nextInt(urls.size()-1)));
+				URL wallpaperURL = new URL(urls.get(random.nextInt(urls.size())));
 				InputStream stream = wallpaperURL.openStream();
 				Drawable drawable = new BitmapDrawable(BitmapFactory.decodeStream(stream));
 				
@@ -142,13 +142,11 @@ public class AndroidWallpapersProvider implements Provider {
 
 	@Override
 	public boolean isConfigurable() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public Class<?> getConfigurationActivity() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }

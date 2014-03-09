@@ -12,17 +12,18 @@ public class SettingsRepository {
 	}
 
 	public String getCurrentProviderName() {
-		Cursor c = databaseHandler.getReadableDatabase().query(DatabaseHandler.SETTINGS_TABLE_NAME, new String[] {"value"}, "key = ?", new String[] {"currentProviderName"}, null, null, null);
-		String name;
-		
-		c.moveToNext();
-		if (c.isAfterLast()) {
-			return null;
+		Cursor c = databaseHandler.getWritableDatabase().query(DatabaseHandler.SETTINGS_TABLE_NAME, new String[] {"value"}, "key = ?", new String[] {"currentProviderName"}, null, null, null);
+		String name = null;
+
+		while (c.moveToNext()) {
+			name = c.getString(0);
+			break;
 		}
-		
-		name = c.getString(0);
+
 		c.close();
-		
+
+		System.out.println("[lala] read db provider " + (name == null ? "null" : name));
+
 		return name;
 	}
 
@@ -30,6 +31,9 @@ public class SettingsRepository {
 		ContentValues values = new ContentValues();
 		values.put("value", "currentProviderName");
 		values.put("key", name);
+
+		System.out.println("[lala] set db provider " + name);
+
 		databaseHandler.getWritableDatabase().replace(DatabaseHandler.SETTINGS_TABLE_NAME, null, values);
 	}
 }

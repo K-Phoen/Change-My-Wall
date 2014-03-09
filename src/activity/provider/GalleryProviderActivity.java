@@ -1,4 +1,4 @@
-package activity.prodiver;
+package activity.provider;
 
 import java.util.Arrays;
 

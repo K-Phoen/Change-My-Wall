@@ -13,6 +13,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	protected static final String SETTINGS_TABLE_CREATE = "CREATE TABLE "
 			+ SETTINGS_TABLE_NAME + " (" + SETTINGS_KEY + " VARCHAR PRIMARY KEY, "
 			+ SETTINGS_VALUE + " TEXT);";
+
 	
 	public static final String GALLERY_PROVIDER_SETTINGS_ID = "key";
 	public static final String GALLERY_PROVIDER_SETTINGS_VALUE = "value";
@@ -52,4 +53,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		db.execSQL(GALLERY_PROVIDER_SELECTION_TABLE_DROP);
 		onCreate(db);
 	}
+
+	@Override
+	public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        onUpgrade(db, oldVersion, newVersion);
+    }
 }

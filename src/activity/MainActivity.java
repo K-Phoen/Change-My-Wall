@@ -21,13 +21,11 @@ import database.DatabaseHandler;
 public class MainActivity extends Activity {
 	WallpaperRepository wallpaperRepository;
 	WallpaperManager wallpaperManager;
-	SettingsRepository settings;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		settings = new SettingsRepository(new DatabaseHandler(this));
 		wallpaperManager = WallpaperManager.getInstance(this);
 		wallpaperRepository = WallpaperRepository.create(this);
 
@@ -42,7 +40,6 @@ public class MainActivity extends Activity {
 		BroadcastReceiver receiver = new BroadcastReceiver() {
 			@Override
 			public void onReceive(Context context, Intent intent) {
-				System.out.println("lolilol");
 				wallpaperView.setImageDrawable(wallpaperManager.getDrawable());
 			}
 		};
@@ -55,11 +52,12 @@ public class MainActivity extends Activity {
 	}
 
 	public void changeWallpaper(View view) {
-		/*if (settings.getCurrentProviderName() != null) {
-			wallpaperRepository.selectProvider(settings
-					.getCurrentProviderName());
-		}*/
-		wallpaperRepository.selectProvider("gallery");
+		SettingsRepository settings = new SettingsRepository(new DatabaseHandler(this));
+
+		if (settings.getCurrentProviderName() != null) {
+			wallpaperRepository.selectProvider(settings.getCurrentProviderName());
+			System.out.println("[lala] read selected provider " + settings.getCurrentProviderName());
+		}
 
 		wallpaperRepository.changeWallpaper(this, new ResultCallback() {
 			@Override

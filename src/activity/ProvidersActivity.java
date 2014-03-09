@@ -27,7 +27,7 @@ public class ProvidersActivity extends Activity {
 
 		setContentView(R.layout.provider_view);
 
-		final SettingsRepository settings = new SettingsRepository(new DatabaseHandler(this));
+		SettingsRepository settings = new SettingsRepository(new DatabaseHandler(this));
 		String currentProviderName = settings.getCurrentProviderName();
 
 		final LinearLayout providerContainer = (LinearLayout) findViewById(R.id.providerContainer);
@@ -38,7 +38,7 @@ public class ProvidersActivity extends Activity {
 			ProviderButton button = (ProviderButton) inflater.inflate(R.layout.provider_button_item, null);
 
 			button.setProviderName(provider.getName());
-			button.setProviderImage(this.getResources().getDrawable(provider.getIcon()));
+			button.setProviderImage(getResources().getDrawable(provider.getIcon()));
 
 			if (provider.getName().equals(currentProviderName)) {
 				button.showConfigurationButton();
@@ -50,13 +50,14 @@ public class ProvidersActivity extends Activity {
 					ProviderButton button = (ProviderButton) v;
 					ProviderButton otherButton;
 					final Provider p = repository.getProvider(button.getProviderName());
+					SettingsRepository settings = new SettingsRepository(new DatabaseHandler(activity));
 
 					for (int i = 0; i < providerContainer.getChildCount(); i += 1) {
 						otherButton = (ProviderButton) providerContainer.getChildAt(i);
 
 						if (otherButton != button) {
 							otherButton.hideConfigurationButton();
-							otherButton.setOnClickListener(null);
+							//otherButton.setOnClickListener(null);
 						}
 					}
 
