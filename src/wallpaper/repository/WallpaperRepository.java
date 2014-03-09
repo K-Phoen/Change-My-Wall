@@ -32,13 +32,7 @@ public class WallpaperRepository {
 	}
 
 	public void selectProvider(String name) {
-		Provider provider = providers.get(name);
-
-		if (provider == null) {
-			throw new RuntimeException("Provider " + name + " not found");
-		}
-
-		selectedProvider = provider;
+		selectedProvider = getProvider(name);
 	}
 
 	public Wallpaper changeWallpaper(Activity activity) {
@@ -65,5 +59,15 @@ public class WallpaperRepository {
 	
 	public Map<String, Provider> getProviders () {
 		return providers;
+	}
+	
+	public Provider getProvider (String name) {
+		Provider provider = providers.get(name);
+
+		if (provider == null) {
+			throw new RuntimeException("Provider " + name + " not found");
+		}
+
+		return provider;
 	}
 }

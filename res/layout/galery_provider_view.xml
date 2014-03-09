@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:gravity="center_vertical|center_horizontal">
+	
+   	<CheckedTextView
+          android:id="@+id/my_checkedtextview"
+          android:layout_width="wrap_content"
+          android:layout_height="90dip"
+          android:gravity="center_vertical|center_horizontal"
+          android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+          android:clickable="true"
+          android:checked="true"
+          android:hint="Voulez-vous utiliser la totalité de la galerie? " />
+
+	<Button
+       android:id="@+id/buttonMultipleChoice"
+       android:layout_width="fill_parent"
+       android:layout_height="90dip"
+       android:gravity="center_vertical|center_horizontal"
+       android:layout_below="@+id/my_checkedtextview"
+       android:text="Sélectionner les différentes photos"
+       android:visibility="invisible" />
+</RelativeLayout>

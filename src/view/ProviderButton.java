@@ -63,4 +63,14 @@ public class ProviderButton extends LinearLayout {
 	public String getProviderName () {
 		return providerName;
 	}
+	
+	public void showConfigurationButton () {
+		ImageView settingButton = (ImageView) getChildAt(2);
+		settingButton.setVisibility(VISIBLE);
+	}
+	
+	public void hideConfigurationButton () {
+		ImageView settingButton = (ImageView) getChildAt(2);
+		settingButton.setVisibility(INVISIBLE);
+	}
 }

@@ -7,6 +7,7 @@ import com.cmw.R;
 
 import wallpaper.entity.DrawableWallpaper;
 import wallpaper.entity.Wallpaper;
+import activity.prodiver.GalleryProviderActivity;
 import android.app.Activity;
 import android.database.Cursor;
 import android.graphics.drawable.BitmapDrawable;
@@ -48,5 +49,17 @@ public class GalleryProvider implements Provider {
 	@Override
 	public int getIcon() {
 		return R.drawable.sd;
+	}
+
+	@Override
+	public boolean isConfigurable() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public Class<?> getConfigurationActivity() {
+		// TODO Auto-generated method stub
+		return GalleryProviderActivity.class;
 	}
 }

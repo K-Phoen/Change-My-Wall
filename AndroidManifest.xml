@@ -15,16 +15,7 @@
         android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-        
-        <activity android:name="com.luminous.pick.CustomGalleryActivity" >
-            <intent-filter>
-                <action android:name="luminous.ACTION_PICK" />
-                <action android:name="luminous.ACTION_MULTIPLE_PICK" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        
+                
         <activity android:name="activity.MainActivity" android:screenOrientation="portrait" android:theme="@style/MainActivityTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,6 +23,14 @@
             </intent-filter>
         </activity>
         <activity android:name="activity.ProvidersActivity" android:screenOrientation="portrait" android:theme="@style/ProviderActivityTheme"></activity>
+        <activity android:name="activity.prodiver.GalleryProviderActivity" android:screenOrientation="portrait" android:theme="@style/ProviderActivityTheme"></activity>
+        <activity android:name="com.luminous.pick.CustomGalleryActivity" >
+            <intent-filter>
+                <action android:name="luminous.ACTION_PICK" />
+                <action android:name="luminous.ACTION_MULTIPLE_PICK" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

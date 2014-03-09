@@ -9,6 +9,6 @@ public interface Provider {
 	String getName();
 	int getIcon();
 
-	//boolean isConfigurable();
-	//Class<?> getConfigurationActivity();
+	boolean isConfigurable();
+	Class<?> getConfigurationActivity();
 }
