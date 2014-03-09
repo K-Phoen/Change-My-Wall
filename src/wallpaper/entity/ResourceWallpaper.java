@@ -3,8 +3,6 @@ package wallpaper.entity;
 import java.io.IOException;
 
 import android.app.WallpaperManager;
-import android.content.Context;
-import android.graphics.drawable.Drawable;
 
 public class ResourceWallpaper implements Wallpaper {
 	protected int resource;
@@ -19,10 +17,5 @@ public class ResourceWallpaper implements Wallpaper {
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
-	}
-
-	public Drawable toDrawable(Context context)
-	{
-		return context.getResources().getDrawable(resource);
 	}
 }

@@ -3,7 +3,6 @@ package wallpaper.entity;
 import java.io.IOException;
 
 import android.app.WallpaperManager;
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.Canvas;
@@ -14,7 +13,7 @@ public class DrawableWallpaper implements Wallpaper {
 	protected Drawable drawable;
 	
 	public DrawableWallpaper(Drawable drawable) {
-		this.drawable= drawable;
+		this.drawable = drawable;
 	}
 	
 	public void promoteAsWallpaper(WallpaperManager manager) {
@@ -23,11 +22,6 @@ public class DrawableWallpaper implements Wallpaper {
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
-	}
-
-	public Drawable toDrawable(Context context)
-	{
-		return drawable;
 	}
 	
 	protected static Bitmap drawableToBitmap (Drawable drawable) {

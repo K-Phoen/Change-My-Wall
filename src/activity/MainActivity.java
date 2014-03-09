@@ -18,6 +18,7 @@ import database.DatabaseHandler;
 
 public class MainActivity extends Activity {
 	WallpaperRepository wallpaperRepository;
+	WallpaperManager wallpaperManager;
 	SettingsRepository settings;
 
 	@Override
@@ -25,13 +26,13 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 
 		settings = new SettingsRepository(new DatabaseHandler(this));
+		wallpaperManager = WallpaperManager.getInstance(this);
 		wallpaperRepository = WallpaperRepository.create();
 
 		setContentView(R.layout.main_view);
 
-		WallpaperManager manager = WallpaperManager.getInstance(this);
 		GestureImageView wallpaperView = (GestureImageView) findViewById(R.id.wallpaperImage);
-		wallpaperView.setImageDrawable(manager.peekDrawable());
+		wallpaperView.setImageDrawable(wallpaperManager.peekDrawable());
     }
 
 	public void editSettings(View view) {
@@ -46,11 +47,10 @@ public class MainActivity extends Activity {
 			wallpaperRepository.selectProvider(settings.getCurrentProviderName());
 		}
 
-		final Activity self = this;
 		wallpaperRepository.changeWallpaper(this, new ResultCallback() {
 			@Override
 			public void handleResult(Wallpaper wallpaper) {
-				wallpaperView.setImageDrawable(wallpaper.toDrawable(self));				
+				wallpaperView.setImageDrawable(wallpaperManager.peekDrawable());				
 			}
 		});
 	}

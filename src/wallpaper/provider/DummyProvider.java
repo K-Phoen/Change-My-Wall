@@ -26,14 +26,14 @@ public class DummyProvider implements Provider {
 	public int getIcon() {
 		return R.drawable.sd;
 	}
+
 	@Override
 	public boolean isConfigurable() {
-		// TODO Auto-generated method stub
 		return false;
 	}
+
 	@Override
 	public Class<?> getConfigurationActivity() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }

@@ -5,8 +5,6 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import android.app.WallpaperManager;
-import android.content.Context;
-import android.graphics.drawable.Drawable;
 
 public class StreamWallpaper implements Wallpaper {
 	protected InputStream stream;
@@ -25,10 +23,5 @@ public class StreamWallpaper implements Wallpaper {
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
-	}
-
-	public Drawable toDrawable(Context context)
-	{
-		return Drawable.createFromStream(stream, "test");
 	}
 }
