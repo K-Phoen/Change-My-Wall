@@ -3,6 +3,7 @@ package activity;
 
 import settings.SettingsRepository;
 import wallpaper.entity.Wallpaper;
+import wallpaper.repository.ResultCallback;
 import wallpaper.repository.WallpaperRepository;
 import android.app.Activity;
 import android.content.Intent;
@@ -58,13 +59,18 @@ public class MainActivity extends Activity {
     }*/
 
 	public void changeWallpaper(View view) {
-		GestureImageView wallpaperView = (GestureImageView) findViewById(R.id.wallpaperImage);
+		final GestureImageView wallpaperView = (GestureImageView) findViewById(R.id.wallpaperImage);
 
 		if (settings.getCurrentProviderName() != null) {
 			wallpaperRepository.selectProvider(settings.getCurrentProviderName());
 		}
 
-		Wallpaper wallpaper = wallpaperRepository.changeWallpaper(this);
-		wallpaperView.setImageDrawable(wallpaper.toDrawable(this));
+		final Activity self = this;
+		wallpaperRepository.changeWallpaper(this, new ResultCallback() {
+			@Override
+			public void handleResult(Wallpaper wallpaper) {
+				wallpaperView.setImageDrawable(wallpaper.toDrawable(self));				
+			}
+		});
 	}
 }

@@ -1,12 +1,10 @@
 package wallpaper.provider;
 
 import wallpaper.entity.ResourceWallpaper;
-import wallpaper.entity.Wallpaper;
+import wallpaper.repository.ResultCallback;
 import android.app.Activity;
 
 import com.cmw.R;
-
-
 
 public class DummyProvider implements Provider {
 	private String name;
@@ -14,9 +12,10 @@ public class DummyProvider implements Provider {
 	public DummyProvider (String name) {
 		this.name = name;
 	}
+
 	@Override
-	public Wallpaper getWallpaper(Activity activity) {
-		return new ResourceWallpaper(R.drawable.dummy_wallpaper);
+	public void getWallpaper(Activity activity, ResultCallback callback) {
+		callback.handleResult(new ResourceWallpaper(R.drawable.dummy_wallpaper));
 	}
 
 	@Override

@@ -1,10 +1,10 @@
 package wallpaper.provider;
 
-import wallpaper.entity.Wallpaper;
+import wallpaper.repository.ResultCallback;
 import android.app.Activity;
 
 public interface Provider {
-	Wallpaper getWallpaper(Activity activity);
+	void getWallpaper(Activity activity, ResultCallback callback);
 
 	String getName();
 	int getIcon();
