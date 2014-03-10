@@ -38,7 +38,7 @@ public class AndroidWallpapersProvider implements Provider {
 
 	@Override
 	public int getIcon() {
-		return R.drawable.sd;
+		return R.drawable.logoandroidwall;
 	}
 	
 	@Override

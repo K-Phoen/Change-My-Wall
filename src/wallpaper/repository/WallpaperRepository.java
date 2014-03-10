@@ -22,8 +22,10 @@ public class WallpaperRepository {
 		WallpaperRepository repository = new WallpaperRepository();
 		GallerySettingsRepository repo = new GallerySettingsRepository(new DatabaseHandler(context));
 		
+		
 		repository.addProvider(new GalleryProvider(repo));
 		repository.addProvider(new AndroidWallpapersProvider());
+		repository.addProvider(new DummyProvider("dummy1"));
 		return repository;
 	}
 

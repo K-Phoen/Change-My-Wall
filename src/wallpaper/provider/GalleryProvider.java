@@ -68,7 +68,7 @@ public class GalleryProvider implements Provider {
 
 	@Override
 	public int getIcon() {
-		return R.drawable.logoandroidwall;
+		return R.drawable.sd;
 	}
 
 	@Override
