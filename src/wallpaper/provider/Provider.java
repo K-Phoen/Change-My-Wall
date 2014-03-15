@@ -10,5 +10,5 @@ public interface Provider {
 	int getIcon();
 
 	boolean isConfigurable();
-	Class<?> getConfigurationActivity();
+	Class<? extends Activity> getConfigurationActivity();
 }

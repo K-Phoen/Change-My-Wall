@@ -77,7 +77,7 @@ public class GalleryProvider implements Provider {
 	}
 
 	@Override
-	public Class<?> getConfigurationActivity() {
+	public Class<? extends Activity> getConfigurationActivity() {
 		return GalleryProviderActivity.class;
 	}
 }

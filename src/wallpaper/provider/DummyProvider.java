@@ -33,7 +33,7 @@ public class DummyProvider implements Provider {
 	}
 
 	@Override
-	public Class<?> getConfigurationActivity() {
+	public Class<? extends Activity> getConfigurationActivity() {
 		return null;
 	}
 }
