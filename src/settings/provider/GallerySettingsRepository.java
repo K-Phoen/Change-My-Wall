@@ -47,7 +47,6 @@ public class GallerySettingsRepository {
 				new String[] { "image" }, null, null, null, null, null);
 		while (c.moveToNext()) {
 			listeSelectionImages.add(c.getString(0));
-			System.out.println(c.getString(0));
 		}
 		c.close();
 		return listeSelectionImages;
@@ -55,6 +54,7 @@ public class GallerySettingsRepository {
 
 	public void selectionImages(List<String> listeSelectionImages) {
 		databaseHandler.getWritableDatabase().delete(DatabaseHandler.GALLERY_PROVIDER_SELECTION_TABLE_NAME, null, null);
+
 		for (String path : listeSelectionImages) {
 			ContentValues values = new ContentValues();
 			values.put("image", path);

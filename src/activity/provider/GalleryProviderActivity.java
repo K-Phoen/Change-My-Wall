@@ -68,7 +68,7 @@ public class GalleryProviderActivity extends Activity{
 			nbrImages.setVisibility(View.INVISIBLE);
 		else
 			nbrImages.setVisibility(View.VISIBLE);
-		nbrImages.setText("Vous avez sélectionné "+ repo.selectionImages().size()+" photos");
+		nbrImages.setText("Vous avez sÃ©lectionnÃ© "+ repo.selectionImages().size()+" photos");
 		
 	}
 	
