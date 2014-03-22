@@ -12,24 +12,60 @@ public class SettingsRepository {
 	}
 
 	public String getCurrentProviderName() {
-		Cursor c = databaseHandler.getReadableDatabase().query(DatabaseHandler.SETTINGS_TABLE_NAME, new String[] {"value"}, "key = ?", new String[] {"currentProviderName"}, null, null, null);
-		String name = null;
+		return readSetting("currentProviderName");
+	}
+
+	public String getCurrentWallpaperTitle() {
+		return readSetting("currentWallpaperTitle");
+	}
+
+	public String getCurrentWallpaperAuthor() {
+		return readSetting("currentWallpaperAuthor");
+	}
+
+	public void setCurrentProviderName(String name) {
+		saveSetting("currentProviderName", name);
+	}
+
+	public void setCurrentWallpaperTitle(String title) {
+		saveSetting("currentWallpaperTitle", title);
+	}
+
+	public void setCurrentWallpaperAuthor(String author) {
+		saveSetting("currentWallpaperAuthor", author);
+	}
+
+	protected void saveSetting(String key, String value) {
+		if (value == null) {
+			deleteSetting(key);
+			return;
+		}
+
+		ContentValues values = new ContentValues();
+		values.put("key", key);
+		values.put("value", value);
+
+		System.out.println("[lala] save " + key + " -> " + value);
+		
+		databaseHandler.getWritableDatabase().replace(DatabaseHandler.SETTINGS_TABLE_NAME, null, values);
+	}
+
+	protected String readSetting(String key) {
+		Cursor c = databaseHandler.getReadableDatabase().query(DatabaseHandler.SETTINGS_TABLE_NAME, new String[] {"value"}, "key = ?", new String[] {key}, null, null, null);
+		String value = null;
 
 		while (c.moveToNext()) {
-			name = c.getString(0);
+			value = c.getString(0);
 			break;
 		}
 
 		c.close();
 
-		return name;
+		System.out.println("[lala] read " + key + " -> " + value);
+		return value;
 	}
 
-	public void setCurrentProviderName(String name) {
-		ContentValues values = new ContentValues();
-		values.put("key", "currentProviderName");
-		values.put("value", name);
-
-		databaseHandler.getWritableDatabase().replace(DatabaseHandler.SETTINGS_TABLE_NAME, null, values);
+	protected void deleteSetting(String key) {
+		databaseHandler.getReadableDatabase().delete(DatabaseHandler.SETTINGS_TABLE_NAME, "key = ?", new String[] {key});
 	}
 }

@@ -15,11 +15,12 @@ public class GallerySettingsRepository {
 	}
 	
 	public boolean useFullGallery() {
+		boolean useFullGallery;
 		Cursor c = databaseHandler.getReadableDatabase().query(
 				DatabaseHandler.GALLERY_PROVIDER_SETTINGS_TABLE_NAME,
 				new String[] { "value" }, "key = ?",
 				new String[] { "useFullGallery" }, null, null, null);
-		boolean useFullGallery;
+		
 		c.moveToNext();
 		if (c.isAfterLast()) {
 			return true;

@@ -28,24 +28,13 @@ public class MainActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
+		setContentView(R.layout.main_view);
+
 		wallpaperManager = WallpaperManager.getInstance(this);
 		wallpaperRepository = WallpaperRepository.create(this);
 
-		setContentView(R.layout.main_view);
-
-		final GestureImageView wallpaperView = (GestureImageView) findViewById(R.id.wallpaperImage);
-		wallpaperView.setImageDrawable(wallpaperManager.getDrawable());
-
-		IntentFilter filter = new IntentFilter();
-		filter.addAction(Intent.ACTION_WALLPAPER_CHANGED);
-
-		BroadcastReceiver receiver = new BroadcastReceiver() {
-			@Override
-			public void onReceive(Context context, Intent intent) {
-				wallpaperView.setImageDrawable(wallpaperManager.getDrawable());
-			}
-		};
-		registerReceiver(receiver, filter);
+		displayInitialWallpaper();
+		setupWallpaperChangeListener();
 	}
 
 	public void editSettings(View view) {
@@ -54,7 +43,7 @@ public class MainActivity extends Activity {
 	}
 
 	public void changeWallpaper(View view) {
-		SettingsRepository settings = new SettingsRepository(new DatabaseHandler(this));
+		final SettingsRepository settings = new SettingsRepository(new DatabaseHandler(this));
 
 		if (settings.getCurrentProviderName() != null) {
 			wallpaperRepository.selectProvider(settings.getCurrentProviderName());
@@ -66,12 +55,11 @@ public class MainActivity extends Activity {
 		wallpaperRepository.changeWallpaper(this, new ResultCallback() {
 			@Override
 			public void handleResult(Wallpaper wallpaper) {
-				if (wallpaper.getTitle() != null) {
-					that.displayWallpaperTitle(wallpaper.getTitle());
-				}
-				if (wallpaper.getAuthor() != null) {
-					that.displayWallpaperAuthor(wallpaper.getAuthor());
-				}
+				that.displayWallpaperTitle(wallpaper.getTitle());
+				that.displayWallpaperAuthor(wallpaper.getAuthor());
+
+				settings.setCurrentWallpaperTitle(wallpaper.getTitle());
+				settings.setCurrentWallpaperAuthor(wallpaper.getAuthor());
 
 				Toast.makeText(that, "Tadaa!", Toast.LENGTH_SHORT).show();
 			}
@@ -80,11 +68,35 @@ public class MainActivity extends Activity {
 
 	protected void displayWallpaperTitle(String title) {
 		TextView titleView = (TextView) findViewById(R.id.title);
-		titleView.setText(title);
+		titleView.setText(title == null ? "" : title);
 	}
 
 	protected void displayWallpaperAuthor(String author) {
 		TextView titleView = (TextView) findViewById(R.id.author);
-		titleView.setText(author);
+		titleView.setText(author == null ? "" : author);
+	}
+
+	protected void displayInitialWallpaper() {
+		SettingsRepository settings = new SettingsRepository(new DatabaseHandler(this));
+
+		displayWallpaperTitle(settings.getCurrentWallpaperTitle());
+		displayWallpaperAuthor(settings.getCurrentWallpaperAuthor());
+		
+		GestureImageView wallpaperView = (GestureImageView) findViewById(R.id.wallpaperImage);
+		wallpaperView.setImageDrawable(wallpaperManager.getDrawable());
+	}
+
+	protected void setupWallpaperChangeListener() {
+		IntentFilter filter = new IntentFilter();
+		filter.addAction(Intent.ACTION_WALLPAPER_CHANGED);
+
+		final GestureImageView wallpaperView = (GestureImageView) findViewById(R.id.wallpaperImage);
+		BroadcastReceiver receiver = new BroadcastReceiver() {
+			@Override
+			public void onReceive(Context context, Intent intent) {
+				wallpaperView.setImageDrawable(wallpaperManager.getDrawable());
+			}
+		};
+		registerReceiver(receiver, filter);
 	}
 }
