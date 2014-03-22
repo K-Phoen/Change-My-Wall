@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.cmw.R;
 
@@ -30,6 +31,7 @@ public class ProvidersActivity extends Activity {
 		SettingsRepository settings = new SettingsRepository(new DatabaseHandler(this));
 		String currentProviderName = settings.getCurrentProviderName();
 
+		final Context ctx = this;
 		final LinearLayout providerContainer = (LinearLayout) findViewById(R.id.providerContainer);
 		final WallpaperRepository repository = WallpaperRepository.create(this);
 
@@ -62,6 +64,7 @@ public class ProvidersActivity extends Activity {
 					}
 
 					settings.setCurrentProviderName(button.getProviderName());
+					Toast.makeText(ctx, button.getProviderName() + " sélectionné", Toast.LENGTH_SHORT).show();
 					
 					if (p.isConfigurable()) {
 						button.showConfigurationButton();

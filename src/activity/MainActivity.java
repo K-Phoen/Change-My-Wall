@@ -13,6 +13,7 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cmw.R;
 import com.polites.android.GestureImageView;
@@ -57,8 +58,9 @@ public class MainActivity extends Activity {
 
 		if (settings.getCurrentProviderName() != null) {
 			wallpaperRepository.selectProvider(settings.getCurrentProviderName());
-			System.out.println("[lala] read selected provider " + settings.getCurrentProviderName());
 		}
+
+		Toast.makeText(this, "Okay, let's do that!", Toast.LENGTH_LONG).show();
 
 		final MainActivity that = this;
 		wallpaperRepository.changeWallpaper(this, new ResultCallback() {
@@ -70,6 +72,8 @@ public class MainActivity extends Activity {
 				if (wallpaper.getAuthor() != null) {
 					that.displayWallpaperAuthor(wallpaper.getAuthor());
 				}
+
+				Toast.makeText(that, "Tadaa!", Toast.LENGTH_SHORT).show();
 			}
 		});
 	}
