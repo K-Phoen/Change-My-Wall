@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import android.app.WallpaperManager;
 
-public class ResourceWallpaper implements Wallpaper {
+public class ResourceWallpaper extends AbstractWallpaper {
 	protected int resource;
 	
 	public ResourceWallpaper(int resource) {

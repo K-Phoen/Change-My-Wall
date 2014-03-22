@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.cmw.R;
 import com.polites.android.GestureImageView;
@@ -59,10 +60,27 @@ public class MainActivity extends Activity {
 			System.out.println("[lala] read selected provider " + settings.getCurrentProviderName());
 		}
 
+		final MainActivity that = this;
 		wallpaperRepository.changeWallpaper(this, new ResultCallback() {
 			@Override
 			public void handleResult(Wallpaper wallpaper) {
+				if (wallpaper.getTitle() != null) {
+					that.displayWallpaperTitle(wallpaper.getTitle());
+				}
+				if (wallpaper.getAuthor() != null) {
+					that.displayWallpaperAuthor(wallpaper.getAuthor());
+				}
 			}
 		});
+	}
+
+	protected void displayWallpaperTitle(String title) {
+		TextView titleView = (TextView) findViewById(R.id.title);
+		titleView.setText(title);
+	}
+
+	protected void displayWallpaperAuthor(String author) {
+		TextView titleView = (TextView) findViewById(R.id.author);
+		titleView.setText(author);
 	}
 }

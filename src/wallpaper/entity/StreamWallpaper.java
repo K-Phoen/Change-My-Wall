@@ -6,7 +6,7 @@ import java.io.InputStream;
 
 import android.app.WallpaperManager;
 
-public class StreamWallpaper implements Wallpaper {
+public class StreamWallpaper extends AbstractWallpaper {
 	protected InputStream stream;
 	
 	public StreamWallpaper(InputStream stream) {

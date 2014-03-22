@@ -1,6 +1,7 @@
 package wallpaper.provider;
 
 import wallpaper.entity.ResourceWallpaper;
+import wallpaper.entity.Wallpaper;
 import wallpaper.repository.ResultCallback;
 import android.app.Activity;
 
@@ -15,7 +16,11 @@ public class DummyProvider implements Provider {
 
 	@Override
 	public void getWallpaper(Activity activity, ResultCallback callback) {
-		callback.handleResult(new ResourceWallpaper(R.drawable.dummy_wallpaper));
+		Wallpaper wallpaper = new ResourceWallpaper(R.drawable.dummy_wallpaper);
+		wallpaper.setTitle("Dummy wallpaper");
+		wallpaper.setAuthor(name);
+
+		callback.handleResult(wallpaper);
 	}
 
 	@Override

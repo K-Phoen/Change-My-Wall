@@ -9,7 +9,7 @@ import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 
-public class DrawableWallpaper implements Wallpaper {
+public class DrawableWallpaper extends AbstractWallpaper {
 	protected Drawable drawable;
 	
 	public DrawableWallpaper(Drawable drawable) {
@@ -36,5 +36,4 @@ public class DrawableWallpaper implements Wallpaper {
 	
 	    return bitmap;
 	}
-
 }
