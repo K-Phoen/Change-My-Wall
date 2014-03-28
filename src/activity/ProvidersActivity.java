@@ -64,8 +64,8 @@ public class ProvidersActivity extends Activity {
 					}
 
 					settings.setCurrentProviderName(button.getProviderName());
-					Toast.makeText(ctx, button.getProviderName() + " sélectionné", Toast.LENGTH_SHORT).show();
-					
+					Toast.makeText(ctx, getString(R.string.msg_provider_selected, button.getProviderName()), Toast.LENGTH_SHORT).show();
+
 					if (p.isConfigurable()) {
 						button.showConfigurationButton();
 						button.setOnClickListener(new OnClickListener() {

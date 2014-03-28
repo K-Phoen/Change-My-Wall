@@ -1,5 +1,6 @@
 <resources>
 
     <string name="app_name">Change My Wall</string>
+    <string name="msg_provider_selected">%1$s sélectionné</string>
 
 </resources>
