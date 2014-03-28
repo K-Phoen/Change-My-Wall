@@ -66,7 +66,7 @@ public class AndroidWallpapersProvider implements Provider {
 		@Override
 		protected Wallpaper doInBackground(String... urls) {
 			try {
-				String html=  downloadUrl(urls[0]);
+				String html = downloadUrl(urls[0]);
 				return extractWallpaper(html);
 			} catch (IOException e) {
 				throw new RuntimeException(e);
@@ -80,25 +80,46 @@ public class AndroidWallpapersProvider implements Provider {
 		
 		protected Wallpaper extractWallpaper(String html) {
 			List<String> urls = new ArrayList<String>();
-			
-		    Pattern pattern = Pattern.compile("<h2><a href=\"([^\"]+)\">", Pattern.CASE_INSENSITIVE);
+			List<String> titles = new ArrayList<String>();
+			List<String> authors = new ArrayList<String>();
+
+			// find all the wallpapers in the page
+		    Pattern pattern = Pattern.compile("<h2><a href=\"([^\"]+)\">([^\"]+)</a></h2>[^\"]+<span class=\"author\">by[^\"]+<a href=\"[^\"]+\">([^\"]+)</a>", Pattern.CASE_INSENSITIVE);
 		    Matcher matcher = pattern.matcher(html);
 
 		    while (matcher.find()) {
-		      	urls.add(matcher.group(1));
+		    	urls.add(matcher.group(1));
+		    	titles.add(matcher.group(2));
+		    	authors.add(matcher.group(3));
 		    }
 
-		    Random random = new Random();
+		    int wallpaperIndex = (new Random()).nextInt(urls.size());
+		    URL wallpaperURL = null;
+		    Wallpaper wallpaper = null;
 
+		    // determine the wallpaper's URL
 			try {
-				URL wallpaperURL = new URL(urls.get(random.nextInt(urls.size())));
-				return new StreamWallpaper(wallpaperURL.openStream());
+				wallpaperURL = new URL(urls.get(wallpaperIndex));
 			} catch (IOException e) {
 				throw new RuntimeException(e);
 			}
+
+			// convert it to a wallpaper object
+			try {
+				wallpaper = new StreamWallpaper(wallpaperURL.openStream());
+			} catch (IOException e) {
+				throw new RuntimeException(e);
+			}
+			
+			// try to guess its name and author
+			wallpaper.setTitle(titles.get(wallpaperIndex).trim());
+			wallpaper.setAuthor(authors.get(wallpaperIndex).trim());
+
+			return wallpaper;
 		}
 
-		private String downloadUrl(String url) throws IOException {
+
+		protected String downloadUrl(String url) throws IOException {
 		    HttpClient client = new DefaultHttpClient();
 
 		    return client.execute(new HttpGet(url), new BasicResponseHandler());
